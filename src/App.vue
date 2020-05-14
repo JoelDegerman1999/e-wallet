@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -8,12 +8,11 @@
 body {
   margin: 0;
   padding: 0;
-  background: rgb(240, 240,240);
-  height: 100vh;
+  background: rgb(240, 240, 240);
 }
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -24,7 +23,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000;
-  height: 100%;
   padding: 1rem;
 }
 

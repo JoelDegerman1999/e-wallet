@@ -2,16 +2,16 @@
   <section class="form">
     <div class="cardnumber flex">
       <label>CARD NUMBER</label>
-      <input type="text" />
+      <input type="text" v-model="newCard.cardNumber" />
     </div>
     <div class="cardholder flex">
       <label>CARDHOLDER NAME</label>
-      <input type="text" />
+      <input type="text" v-model="newCard.name" />
     </div>
     <div class="valid-and-ccv">
       <div class="valid">
         <label>VALID THRU</label>
-        <input type="text" />
+        <input type="text" v-model="newCard.valid" />
       </div>
       <div class="ccv">
         <label>CCV</label>
@@ -27,17 +27,35 @@
         <option value="ninja">Ninja Corp</option>
       </select>
     </div>
+    <button @click="addCard">Add Card</button>
   </section>
 </template>
 
 <script>
 export default {
-  props: {},
-  data() {
-    return {};
+  props: {
+    card: Object,
   },
-  methods: {},
-  computed: {}
+  data() {
+    return {
+      newCard: this.card,
+    };
+  },
+  methods: {
+    addCard() {
+      this.$emit("addCard", this.newCard);
+      this.newCard = {
+        id: 0,
+        name: "",
+        valid: "",
+        cardNumber: "",
+        isActive: false,
+        color: "#FFB443",
+        blipDark: false,
+      };
+    },
+  },
+  computed: {},
 };
 </script>
 
@@ -92,11 +110,11 @@ input {
   }
   .vendor {
     select {
-        background: rgb(240, 240, 240);
-        border: 1px solid black;
-        height: 2rem;
-        border-radius: 5px;
-        width: 100%;
+      background: rgb(240, 240, 240);
+      border: 1px solid black;
+      height: 2rem;
+      border-radius: 5px;
+      width: 100%;
     }
   }
 }

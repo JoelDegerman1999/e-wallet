@@ -1,23 +1,27 @@
 <template>
   <section class="active-card-sect">
     <h6>{{ cardTitle }}</h6>
-    <article class="active-card" :class="{dark: card.blipDark}" :style="{backgroundColor: card.color}">
+    <article
+      class="active-card"
+      :style="{ backgroundColor: card.color }"
+      :class="{ newCard: addCard }"
+    >
       <div class="chip-and-vendor">
-        <img src="@/assets/chip-dark.svg" v-if="!card.blipDark"/>
-        <img src="@/assets/chip-light.svg" v-else>
-        <img src="@/assets/vendor-bitcoin.svg"/>
+        <img src="@/assets/chip-dark.svg" v-if="!card.blipDark" />
+        <img src="@/assets/chip-light.svg" v-else />
+        <img src="@/assets/vendor-bitcoin.svg" />
       </div>
       <div class="cardnumber">
-        <p>{{card.cardNumber}}</p>
+        <p>{{ card.cardNumber }}</p>
       </div>
       <div class="cardinfo">
         <div class="cardholder">
           <label>CARDHOLDER NAME</label>
-          <h4>{{card.name}}</h4>
+          <h4>{{ card.name }}</h4>
         </div>
         <div class="valid">
           <label>VALID THRU</label>
-          <h4>{{card.valid}}</h4>
+          <h4>{{ card.valid }}</h4>
         </div>
       </div>
     </article>
@@ -28,14 +32,14 @@
 export default {
   props: {
     cardTitle: String,
-    card: Object
+    card: Object,
+    addCard: Boolean,
   },
   data() {
     return {};
   },
-  methods: {
-  },
-  computed: {}
+  methods: {},
+  computed: {},
 };
 </script>
 
@@ -95,5 +99,8 @@ h6 {
       }
     }
   }
+}
+.newCard {
+  background-color: #fff;
 }
 </style>
