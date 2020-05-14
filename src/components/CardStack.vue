@@ -1,6 +1,6 @@
 <template>
   <section>
-    <app-card v-for="(card,index) in cardNonActive" :key="index" :card="card">
+    <app-card @click.native="changeActiveCard(card.id)" v-for="card in cardNonActive" :key="card.id" :card="card">
     </app-card>
   </section>
 </template>
@@ -18,7 +18,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    changeActiveCard(cardId) {
+      this.$emit("changeActiveCard", cardId)
+    }
+  },
   computed: {
     cardNonActive() {
       return this.cardArray.filter(card => !card.isActive)

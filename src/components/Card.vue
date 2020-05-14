@@ -1,10 +1,11 @@
 <template>
   <section class="active-card-sect">
     <h6>{{ cardTitle }}</h6>
-    <article class="active-card" :style="{backgroundColor: color}">
+    <article class="active-card" :style="{backgroundColor: card.color}">
       <div class="chip-and-vendor">
-        <img src="@/assets/chip-dark.svg" alt />
-        <img src="@/assets/vendor-bitcoin.svg" alt />
+        <img src="@/assets/chip-dark.svg" v-if="!card.blipDark"/>
+        <img src="@/assets/chip-light.svg" v-else>
+        <img src="@/assets/vendor-bitcoin.svg"/>
       </div>
       <div class="cardnumber">
         <p>{{card.cardNumber}}</p>
@@ -27,13 +28,13 @@
 export default {
   props: {
     cardTitle: String,
-    color: String,
     card: Object
   },
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+  },
   computed: {}
 };
 </script>

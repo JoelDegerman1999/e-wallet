@@ -2,7 +2,7 @@
   <div class="home">
     <app-top headerTitle="E-WALLET" />
     <app-card cardTitle="ACTIVE-CARD" :card="cardThatIsActive" />
-    <app-card-stack :cardArray="cardArray" />
+    <app-card-stack :cardArray="cardArray" @changeActiveCard="changeActiveCard"/>
     <button @click="gotoAddCard">ADD A NEW CARD</button>
   </div>
 </template>
@@ -30,6 +30,15 @@ export default {
   methods: {
     gotoAddCard() {
       this.$router.push("/addcard");
+    },
+    changeActiveCard(cardId) {
+      this.cardArray.map(card => {
+        if(card.id != cardId){
+          card.isActive = false
+        }else {
+          card.isActive= true
+        }
+      })
     }
   },
   computed: {

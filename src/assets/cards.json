@@ -1,28 +1,41 @@
 {
   "cards": [
     {
+      "id":1,
       "name": "JOEL DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": true
+      "isActive": true,
+      "color": "#FFB443",
+      "blipDark": false
     },
     {
+      "id":2,
       "name": "LARS DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": false
+      "isActive": false,
+      "color": "#DD2E4D",
+      "blipDark": false
     },
     {
+      "id":3,
       "name": "HELENA DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": false
+      "isActive": false,
+      "color": "#323232",
+      "blipDark": true
+
     },
     {
+      "id":4,
       "name": "EMMA DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": false
+      "isActive": false,
+      "color": "#8051E5",
+      "blipDark": false
     }
   ]
 }
