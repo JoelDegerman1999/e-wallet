@@ -1,6 +1,7 @@
 <template>
   <section>
-    <app-card :card="card"/>
+    <app-card v-for="(card,index) in cardNonActive" :key="index" :card="card">
+    </app-card>
   </section>
 </template>
 
@@ -18,25 +19,15 @@ export default {
     return {};
   },
   methods: {},
-  computed: {}
+  computed: {
+    cardNonActive() {
+      return this.cardArray.filter(card => !card.isActive)
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 section {
-  width: 100%;
-  height: 50px;
-  &:first-child {
-    position: relative;
-    top: 1%;
-  }
-  &:nth-child(2){
-    position: relative;
-    bottom: 24%;
-  }
-  &:last-child {
-    position: relative;
-    bottom: 49%;
-  }
 }
 </style>
