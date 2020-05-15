@@ -2,7 +2,10 @@
   <div class="home">
     <app-top headerTitle="E-WALLET" />
     <app-card cardTitle="ACTIVE-CARD" :card="cardThatIsActive" />
-    <app-card-stack :cardArray="cardArray" @changeActiveCard="changeActiveCard" />
+    <app-card-stack
+      :cardArray="cardArray"
+      @changeActiveCard="changeActiveCard"
+    />
     <button @click="gotoAddCard">ADD A NEW CARD</button>
   </div>
 </template>
@@ -17,11 +20,11 @@ export default {
   components: {
     appTop: Top,
     appCard: Card,
-    appCardStack: CardStack
+    appCardStack: CardStack,
   },
   data() {
     return {
-      cardArray: []
+      cardArray: [],
     };
   },
   beforeMount() {
@@ -32,27 +35,26 @@ export default {
       this.$router.push("/addcard");
     },
     changeActiveCard(cardId) {
-      this.cardArray.map(card => {
+      this.cardArray.map((card) => {
         if (card.id != cardId) {
           card.isActive = false;
         } else {
           card.isActive = true;
         }
       });
-    }
+    },
   },
   computed: {
     cardThatIsActive() {
       let activeCard;
-      this.cardArray.map(card => {
+      this.cardArray.map((card) => {
         if (card.isActive) activeCard = card;
       });
       return activeCard;
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .home {
@@ -60,9 +62,7 @@ export default {
   display: flex;
   flex-direction: column;
   button {
-    margin: auto;
-    margin-bottom: 1rem;
-    width: 90%;
+    width: 100%;
     height: 6rem;
     border: 1px solid black;
     background: rgb(240, 240, 240);

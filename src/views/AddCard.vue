@@ -1,7 +1,7 @@
 <template>
   <div class="addcard">
-    <app-top headerTitle="ADD A NEW BANK CARD" />
-    <app-card :card="placeholderCard" cardTitle="NEW CARD" :addCard="true" />
+    <app-top headerTitle="ADD A NEW BANK CARD" addCard />
+    <app-card :card="placeholderCard" cardTitle="NEW CARD" addCard />
     <app-card-form @addCard="addCard" :card="placeholderCard" />
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
         valid: "XX/XX",
         cardNumber: "XXXX XXXX XXXX XXXX",
         isActive: false,
-        color: "",
+        color: "#fff",
         blipDark: false,
       },
     };

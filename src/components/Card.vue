@@ -1,10 +1,10 @@
 <template>
   <section class="active-card-sect">
-    <h6>{{ cardTitle }}</h6>
+    <h6 v-if="cardTitle">{{ cardTitle }}</h6>
     <article
       class="active-card"
       :style="{ backgroundColor: card.color }"
-      :class="{ newCard: addCard }"
+      :class="{ newCard: addCard, dark: card.blipDark }"
     >
       <div class="chip-and-vendor">
         <img src="@/assets/chip-dark.svg" v-if="!card.blipDark" />
@@ -45,8 +45,8 @@ export default {
 
 <style lang="scss" scoped>
 h6 {
-  font-weight: 400;
   margin-bottom: 0.5rem;
+  font-weight: 400;
 }
 
 .dark {

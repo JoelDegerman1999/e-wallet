@@ -20,14 +20,14 @@
     </div>
     <div class="vendor flex">
       <label>VENDOR</label>
-      <select name="vendors" id="vendors">
+      <select name="vendors" id="vendors" v-model="vendor">
         <option value="bitcoin">Bitcoin</option>
         <option value="blockchain">Blockchain</option>
         <option value="evil">Evil Corp</option>
         <option value="ninja">Ninja Corp</option>
       </select>
     </div>
-    <button @click="addCard">Add Card</button>
+    <button @click="addCard">Create Card</button>
   </section>
 </template>
 
@@ -39,10 +39,15 @@ export default {
   data() {
     return {
       newCard: this.card,
+      vendor: "evil",
     };
   },
   methods: {
     addCard() {
+      if (this.$root.cardArray.length == 8) {
+        alert("You cant add anymore");
+        return;
+      }
       this.$emit("addCard", this.newCard);
       this.newCard = {
         id: 0,
@@ -50,7 +55,7 @@ export default {
         valid: "",
         cardNumber: "",
         isActive: false,
-        color: "#FFB443",
+        color: "#fff",
         blipDark: false,
       };
     },
@@ -65,6 +70,17 @@ input {
 }
 .form {
   margin-top: 2rem;
+
+  button {
+    margin-top: 2rem;
+    width: 100%;
+    height: 6rem;
+    border: 1px solid black;
+    background: rgb(240, 240, 240);
+    font-weight: 700;
+    border-radius: 7px;
+  }
+
   .flex {
     display: flex;
     flex-direction: column;
