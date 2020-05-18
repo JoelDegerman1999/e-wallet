@@ -4,12 +4,16 @@
     <article
       class="active-card"
       :style="{ backgroundColor: card.color }"
-      :class="{ newCard: addCard, dark: card.blipDark }"
+      :class="{ dark: card.blipDark }"
     >
       <div class="chip-and-vendor">
         <img src="@/assets/chip-dark.svg" v-if="!card.blipDark" />
         <img src="@/assets/chip-light.svg" v-else />
-        <img src="@/assets/vendor-bitcoin.svg" />
+        <img src="@/assets/vendor-bitcoin.svg" v-if="card.vendor == 'bitcoin'"/>
+        <img src="@/assets/vendor-blockchain.svg" v-if="card.vendor == 'blockchain'"/>
+        <img src="@/assets/vendor-evil.svg" v-if="card.vendor == 'evil'"/>
+        <img src="@/assets/vendor-ninja.svg" v-if="card.vendor == 'ninja'"/>
+
       </div>
       <div class="cardnumber">
         <p>{{ card.cardNumber }}</p>
@@ -32,8 +36,7 @@
 export default {
   props: {
     cardTitle: String,
-    card: Object,
-    addCard: Boolean,
+    card: Object
   },
   data() {
     return {};
@@ -59,7 +62,6 @@ h6 {
   background-color: #ffb443;
   border-radius: 8px;
   margin: 0 auto;
-
   box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.4);
 
   .chip-and-vendor {
@@ -99,8 +101,5 @@ h6 {
       }
     }
   }
-}
-.newCard {
-  background-color: #fff;
 }
 </style>

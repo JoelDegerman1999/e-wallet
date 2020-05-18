@@ -5,9 +5,10 @@
       "name": "JOEL DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": true,
+      "isActive": false,
       "color": "#FFB443",
-      "blipDark": false
+      "blipDark": false,
+      "vendor":"bitcoin"
     },
     {
       "id":2,
@@ -16,16 +17,18 @@
       "cardNumber": "1223 5123 5344 3454",
       "isActive": false,
       "color": "#DD2E4D",
-      "blipDark": false
+      "blipDark": false,
+      "vendor":"blockchain"
     },
     {
       "id":3,
       "name": "HELENA DEGERMAN",
       "valid": "04/21",
       "cardNumber": "1223 5123 5344 3454",
-      "isActive": false,
+      "isActive": true,
       "color": "#323232",
-      "blipDark": true
+      "blipDark": true,
+      "vendor":"evil"
 
     },
     {
@@ -35,7 +38,8 @@
       "cardNumber": "1223 5123 5344 3454",
       "isActive": false,
       "color": "#8051E5",
-      "blipDark": false
+      "blipDark": false,
+      "vendor":"ninja"
     }
   ]
 }

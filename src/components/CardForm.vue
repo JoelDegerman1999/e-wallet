@@ -20,7 +20,7 @@
     </div>
     <div class="vendor flex">
       <label>VENDOR</label>
-      <select name="vendors" id="vendors" v-model="vendor">
+      <select name="vendors" id="vendors" v-model="vendor" @change="changeVendor">
         <option value="bitcoin">Bitcoin</option>
         <option value="blockchain">Blockchain</option>
         <option value="evil">Evil Corp</option>
@@ -39,25 +39,20 @@ export default {
   data() {
     return {
       newCard: this.card,
-      vendor: "evil",
+      vendor: "blockchain",
     };
   },
   methods: {
+    changeVendor() {
+      this.newCard.vendor = this.vendor
+    },
     addCard() {
       if (this.$root.cardArray.length == 8) {
-        alert("You cant add anymore");
+        alert("Maximum cards allowed, please remove one");
         return;
       }
+      this.newCard.vendor = this.vendor
       this.$emit("addCard", this.newCard);
-      this.newCard = {
-        id: 0,
-        name: "",
-        valid: "",
-        cardNumber: "",
-        isActive: false,
-        color: "#fff",
-        blipDark: false,
-      };
     },
   },
   computed: {},

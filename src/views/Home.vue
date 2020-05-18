@@ -1,10 +1,11 @@
 <template>
   <div class="home">
-    <app-top headerTitle="E-WALLET" />
-    <app-card cardTitle="ACTIVE-CARD" :card="cardThatIsActive" />
+    <app-top headerTitle="E-WALLET" class="top" />
+    <app-card cardTitle="ACTIVE-CARD" :card="cardThatIsActive" class="card"/>
     <app-card-stack
       :cardArray="cardArray"
       @changeActiveCard="changeActiveCard"
+      class="card-stack"
     />
     <button @click="gotoAddCard">ADD A NEW CARD</button>
   </div>
@@ -68,6 +69,26 @@ export default {
     background: rgb(240, 240, 240);
     font-weight: 700;
     border-radius: 7px;
+  }
+  
+}
+
+@media screen and (min-width: 768px){
+  .card {
+    width: 21rem;
+  }
+  .card-stack {
+   width: 21rem;
+  }
+  button {
+    max-width: 21rem;
+  }
+  .top {
+    width: 21rem;
+  }
+
+  .home {
+    align-items: center;
   }
 }
 </style>
