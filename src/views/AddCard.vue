@@ -35,7 +35,7 @@ export default {
         isActive: false,
         color: "#999",
         blipDark: false,
-        vendor: "blockchain"
+        vendor: "bitcoin"
       }
     };
   },

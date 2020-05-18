@@ -1,12 +1,14 @@
 <template>
   <div class="home">
     <app-top headerTitle="E-WALLET" class="top" />
-    <app-card cardTitle="ACTIVE-CARD" :card="cardThatIsActive" class="card"/>
-    <app-card-stack
-      :cardArray="cardArray"
-      @changeActiveCard="changeActiveCard"
-      class="card-stack"
+    <app-card v-if="cardThatIsActive != null"
+      cardTitle="ACTIVE-CARD"
+      deleteBtn
+      :card="cardThatIsActive"
+      @deleteCard="deleteCard"
+      class="card"
     />
+    <app-card-stack :cardArray="cardArray" @changeActiveCard="changeActiveCard" class="card-stack"/>
     <button @click="gotoAddCard">ADD A NEW CARD</button>
   </div>
 </template>
@@ -21,11 +23,11 @@ export default {
   components: {
     appTop: Top,
     appCard: Card,
-    appCardStack: CardStack,
+    appCardStack: CardStack
   },
   data() {
     return {
-      cardArray: [],
+      cardArray: []
     };
   },
   beforeMount() {
@@ -33,10 +35,11 @@ export default {
   },
   methods: {
     gotoAddCard() {
+      this.$root.cardArray = this.cardArray
       this.$router.push("/addcard");
     },
     changeActiveCard(cardId) {
-      this.cardArray.map((card) => {
+      this.cardArray.map(card => {
         if (card.id != cardId) {
           card.isActive = false;
         } else {
@@ -44,16 +47,24 @@ export default {
         }
       });
     },
+    deleteCard(card) {
+      this.cardArray = this.cardArray.filter(c => c.id != card.id);
+      if (this.cardArray.length > 0) {
+        this.cardArray[0].isActive = true;
+      } 
+    }
   },
   computed: {
     cardThatIsActive() {
       let activeCard;
-      this.cardArray.map((card) => {
-        if (card.isActive) activeCard = card;
-      });
+      if (this.cardArray.length > 0) {
+        this.cardArray.map(card => {
+          if (card.isActive) activeCard = card;
+        });
+      }
       return activeCard;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -70,15 +81,14 @@ export default {
     font-weight: 700;
     border-radius: 7px;
   }
-  
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   .card {
     width: 21rem;
   }
   .card-stack {
-   width: 21rem;
+    width: 21rem;
   }
   button {
     max-width: 21rem;

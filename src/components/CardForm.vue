@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       newCard: this.card,
-      vendor: "blockchain",
+      vendor: "bitcoin",
     };
   },
   methods: {

@@ -1,6 +1,9 @@
 <template>
   <section class="active-card-sect">
-    <h6 v-if="cardTitle">{{ cardTitle }}</h6>
+    <div class="title-and-delete" v-if="cardTitle && deleteBtn">
+      <h6>{{ cardTitle }}</h6>
+      <button class="deleteBtn" @click="deleteCard(card)">Delete</button>
+    </div>
     <article
       class="active-card"
       :style="{ backgroundColor: card.color }"
@@ -9,11 +12,10 @@
       <div class="chip-and-vendor">
         <img src="@/assets/chip-dark.svg" v-if="!card.blipDark" />
         <img src="@/assets/chip-light.svg" v-else />
-        <img src="@/assets/vendor-bitcoin.svg" v-if="card.vendor == 'bitcoin'"/>
-        <img src="@/assets/vendor-blockchain.svg" v-if="card.vendor == 'blockchain'"/>
-        <img src="@/assets/vendor-evil.svg" v-if="card.vendor == 'evil'"/>
-        <img src="@/assets/vendor-ninja.svg" v-if="card.vendor == 'ninja'"/>
-
+        <img src="@/assets/vendor-bitcoin.svg" v-if="card.vendor == 'bitcoin'" />
+        <img src="@/assets/vendor-blockchain.svg" v-if="card.vendor == 'blockchain'" />
+        <img src="@/assets/vendor-evil.svg" v-if="card.vendor == 'evil'" />
+        <img src="@/assets/vendor-ninja.svg" v-if="card.vendor == 'ninja'" />
       </div>
       <div class="cardnumber">
         <p>{{ card.cardNumber }}</p>
@@ -36,13 +38,18 @@
 export default {
   props: {
     cardTitle: String,
-    card: Object
+    card: Object,
+    deleteBtn: Boolean
   },
   data() {
     return {};
   },
-  methods: {},
-  computed: {},
+  methods: {
+    deleteCard(card) {
+      this.$emit("deleteCard", card)
+    }
+  },
+  computed: {}
 };
 </script>
 
@@ -56,6 +63,23 @@ h6 {
   color: white;
 }
 
+  .title-and-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      position: absolute;
+      right: 19px;
+      top: 95px;
+
+      border: 1px solid black;
+      background: #ffb443;
+      width: 5rem;
+      height: 1.5rem;
+      border-radius: 8px;
+    }
+  }
 .active-card {
   box-sizing: border-box;
   padding: 1rem;
@@ -63,6 +87,7 @@ h6 {
   border-radius: 8px;
   margin: 0 auto;
   box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.4);
+
 
   .chip-and-vendor {
     display: flex;
