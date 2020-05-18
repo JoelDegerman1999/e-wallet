@@ -6,6 +6,7 @@
         v-for="card in cardNonActive"
         :key="card.id"
         :card="card"
+        inCardStack
       >
       </app-card>
     </section>

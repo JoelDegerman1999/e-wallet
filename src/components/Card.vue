@@ -7,7 +7,7 @@
     <article
       class="active-card"
       :style="{ backgroundColor: card.color }"
-      :class="{ dark: card.blipDark }"
+      :class="{ dark: card.blipDark, hoverEffect: inCardStack }"
     >
       <div class="chip-and-vendor">
         <img src="@/assets/chip-dark.svg" v-if="!card.blipDark" />
@@ -39,7 +39,8 @@ export default {
   props: {
     cardTitle: String,
     card: Object,
-    deleteBtn: Boolean
+    deleteBtn: Boolean,
+    inCardStack: Boolean
   },
   data() {
     return {};
@@ -55,8 +56,13 @@ export default {
 
 <style lang="scss" scoped>
 h6 {
-  margin-bottom: 0.5rem;
   font-weight: 400;
+}
+
+.hoverEffect {
+  &:hover {
+    border: 3px solid white;
+  }
 }
 
 .dark {
@@ -64,20 +70,22 @@ h6 {
 }
 
   .title-and-delete{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 0.5rem;
     button {
-      position: absolute;
-      right: 19px;
-      top: 95px;
-
+      outline: none;
+      cursor: pointer;
+      grid-column: 3/4;
       border: 1px solid black;
       background: #ffb443;
       width: 5rem;
       height: 1.5rem;
       border-radius: 8px;
+    }
+    h6 {
+      margin: auto;
+      grid-column: 2/3;
     }
   }
 .active-card {
@@ -88,7 +96,7 @@ h6 {
   margin: 0 auto;
   box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.4);
 
-
+  transition: .3s all ease;
   .chip-and-vendor {
     display: flex;
     justify-content: space-between;
