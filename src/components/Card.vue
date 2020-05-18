@@ -1,8 +1,8 @@
 <template>
   <section class="active-card-sect">
-    <div class="title-and-delete" v-if="cardTitle && deleteBtn">
-      <h6>{{ cardTitle }}</h6>
-      <button class="deleteBtn" @click="deleteCard(card)">Delete</button>
+    <div class="title-and-delete">
+      <h6 v-if="cardTitle" >{{ cardTitle }}</h6>
+      <button v-if="deleteBtn" class="deleteBtn" @click="deleteCard(card)">Delete</button>
     </div>
     <article
       class="active-card"
@@ -47,7 +47,10 @@ export default {
   },
   methods: {
     deleteCard(card) {
-      this.$emit("deleteCard", card)
+      if(confirm("Do you want to delete")){
+        this.$emit("deleteCard", card)
+      }
+      return
     }
   },
   computed: {}
